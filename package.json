@@ -10,7 +10,7 @@
   "dependencies": {
     "aws-sdk": "^2.496.0",
     "bootstrap": "^3.4.1",
-    "jquery": "^1.12.4",
+    "jquery": "^3.4.0",
     "jquery-template-engine": "^1.0.1"
   },
   "devDependencies": {},
