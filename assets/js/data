@@ -1,0 +1,257 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "ScienceBotPreAlpha",
+    "version": "1",
+    "intents": [
+      {
+        "name": "FindLocation",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "where is {location}",
+          "how can i get to {location}"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "location",
+            "slotTypeVersion": "2",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Where do you want to go?"
+                }
+              ],
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"buttons\":[{\"text\":\"Student Resource Center\",\"value\":\"SRC\"},{\"text\":\"International Office\",\"value\":\"international office\"},{\"text\":\"Library\",\"value\":\"Library\"}]}]}",
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "location"
+          }
+        ],
+
+        "dialogCodeHook": {
+          "uri": "arn:aws:lambda:us-east-1:416527880812:function:ScienceChatBotFunction",
+          "messageVersion": "1.0"
+        }
+      },
+      {
+        "name": "LocationLibrary",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "where is library",
+          "I want to go library"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "CustomPayload",
+              "content": "Library is on the corner of Alford Street and Princes Street.\n<a href=\"https://www.google.co.nz/maps/place/University+of+Auckland+General+Library/@-36.851389,174.7706139,17.75z/data=!4m12!1m6!3m5!1s0x6d0d47e34106aa09:0x509408e0474cfdca!2sUniversity+of+Auckland+General+Library!8m2!3d-36.8512521!4d174.769334!3m4!1s0x6d0d47e34106aa09:0x509408e0474cfdca!8m2!3d-36.8512521!4d174.769334\">Visit Map</a>"
+            }
+          ]
+        }
+      },
+
+      {
+        "name": "DidIAnswerAllQuestions",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "YesNo",
+            "slotTypeVersion": "1",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "e.g. What city?"
+                }
+              ],
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"buttons\":[{\"text\":\"Yes\",\"value\":\"Yes\"},{\"text\":\"No\",\"value\":\"No\"}]}]}",
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "YesNo"
+          }
+        ],
+        "dialogCodeHook": {
+          "uri": "arn:aws:lambda:us-east-1:416527880812:function:ScienceChatBotFunction",
+          "messageVersion": "1.0"
+        }
+      },
+      {
+        "name": "WhatCanYouDo",
+        "version": "18",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "What can you do",
+          "What can you do for me",
+          "Show me what you have got",
+          "Who are you",
+          "Hi",
+          "Hello"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "MetaQuestions",
+            "slotTypeVersion": "2",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Hi there, this is chat bot for Science, please tell me what can I help you with."
+                }
+              ],
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\" \",\"title\":\" \",\"buttons\":[{\"text\":\"Look for a form\",\"value\":\"form\"},{\"text\":\"Look for a person\",\"value\":\"person\"},{\"text\":\"About courses\",\"value\":\"course\"},{\"text\":\"Find a location\",\"value\":\"location\"},{\"text\":\"Make appointment\",\"value\":\"appointment\"}]}]}",
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "MetaQuestions"
+          }
+        ],
+        "dialogCodeHook": {
+          "uri": "arn:aws:lambda:us-east-1:416527880812:function:ScienceChatBotFunction",
+          "messageVersion": "1.0"
+        }
+      }
+    ],
+    "slotTypes": [
+      {
+        "name": "MetaQuestions",
+        "version": "2",
+        "enumerationValues": [
+          {
+            "value": "other",
+            "synonyms": [
+              "other"
+            ]
+          },
+          {
+            "value": "form",
+            "synonyms": [
+              "form"
+            ]
+          },
+          {
+            "value": "person",
+            "synonyms": [
+              "People",
+              "who",
+              "lecturer"
+            ]
+          },
+          {
+            "value": "course",
+            "synonyms": [
+              "courses",
+              "paper"
+            ]
+          },
+          {
+            "value": "location",
+            "synonyms": [
+              "locations",
+              "where",
+              "building"
+            ]
+          },
+          {
+            "value": "appointment",
+            "synonyms": [
+              "appointments"
+            ]
+          }
+        ],
+        "valueSelectionStrategy": "TOP_RESOLUTION"
+      },
+      {
+        "name": "location",
+        "version": "2",
+        "enumerationValues": [
+          {
+            "value": "SRC",
+            "synonyms": [
+              "student resource center"
+            ]
+          },
+          {
+            "value": "international office",
+            "synonyms": [
+              "international office"
+            ]
+          },
+          {
+            "value": "Library",
+            "synonyms": [
+              "Library"
+            ]
+          }
+        ],
+        "valueSelectionStrategy": "TOP_RESOLUTION"
+      },
+      {
+        "name": "YesNo",
+        "version": "1",
+        "enumerationValues": [
+          {
+            "value": "No",
+            "synonyms": [
+              "n"
+            ]
+          },
+          {
+            "value": "Yes",
+            "synonyms": [
+              "y"
+            ]
+          }
+        ],
+        "valueSelectionStrategy": "TOP_RESOLUTION"
+      }
+    ],
+    "voiceId": "0",
+    "childDirected": false,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 300,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    }
+  }
+}

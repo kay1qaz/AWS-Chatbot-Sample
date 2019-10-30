@@ -1,0 +1,12 @@
+body {
+    font-family: National,Verdana,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.panel-primary {
+    border-color: #00467f!important;
+}
+
+.panel-primary>.panel-heading{
+    border-color: #00467f!important;
+    background-color: #00467f!important;
+}

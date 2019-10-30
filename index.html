@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The University of Auckland</title>
+</head>
+
+<body>
+
+<h2>Dummy Website For Testing Chatbot</h2>
+
+<!-- Chatbot -->
+<div class="chat-popup">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 pull-right">
+                <div class="panel panel-primary">
+                    <!-- header -->
+                    <div class="panel-heading" id="accordion">
+                        <span class="glyphicon glyphicon-comment"></span> ScienceBot
+                        <div class="btn-group pull-right">
+                            <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- conversation -->
+                    <div class="panel-collapse collapse" id="collapseOne">
+                        <div class="panel-body">
+                            <ul class="chat">
+                                <div id="conversation">
+                                    <li class="right clearfix">
+                                        <span class="chat-img pull-right">
+                                            <p data-letters="SB" data-type="ai"></p>
+                                        </span>
+                                        <div class="chat-body clearfix"><p>Say hello to start a conversation.</p></div>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                        <!-- input -->
+                        <div class="panel-footer">
+                            <form id="chatform" onsubmit="return pushChat();">
+                            <div class="input-group">
+                                <input id="wisdom" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-sm" id="btn-chat">
+                                        Send</button>
+                                </span>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="./node_modules/jquery/dist/jquery.min.js" ></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" ></script>
+<script src="./node_modules/aws-sdk/dist/aws-sdk.min.js" ></script>
+<script src="assets/js/chatbot.js" ></script>
+
+<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="./assets/css/custom.css">
+<link rel="stylesheet" href="assets/css/defult.css" >
+
+</html>
